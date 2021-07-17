@@ -61,7 +61,7 @@ public class GlobalErrorHandler {
   public Map<String, Object> handleNoSuchElementException(
       NoSuchElementException e, WebRequest webRequest) {
     return createExceptionMessage(e, HttpStatus.NOT_FOUND, webRequest, 
-        LogStatus.MESSAGE_ONLY);
+        LogStatus.STACK_TRACE);
   }
   
   /**
@@ -86,7 +86,7 @@ public class GlobalErrorHandler {
    */
   private Map<String, Object> createExceptionMessage(Exception e, 
       HttpStatus status, WebRequest webRequest, LogStatus logStatus) {
-    Map<String, Object> error = new HashMap<>();
+    Map<String, Object> error = new HashMap<String, Object>();
     String timestamp = 
         ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME);
 

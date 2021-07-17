@@ -47,7 +47,7 @@ class FetchJeepTest {
       JeepModel model = JeepModel.WRANGLER;
       String trim = "Sport";
       String uri =
-          String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
+          String.format("%s?model=%s&trim=%s", getBaseUriForJeeps(), model, trim);
     
       // When: a connection is made to the URI
       ResponseEntity<List<Jeep>> response = 
@@ -73,7 +73,7 @@ class FetchJeepTest {
       JeepModel model = JeepModel.WRANGLER;
       String trim = "Unknown Value";
       String uri =
-          String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
+          String.format("%s?model=%s&trim=%s", getBaseUriForJeeps(), model, trim);
     
       // When: a connection is made to the URI
       ResponseEntity<Map<String, Object>> response = 
@@ -98,7 +98,7 @@ class FetchJeepTest {
        String model, String trim, String reason) {
      // Given: a valid model, trim, and URI
      String uri =
-         String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
+         String.format("%s?model=%s&trim=%s", getBaseUriForJeeps(), model, trim);
    
      // When: a connection is made to the URI
      ResponseEntity<Map<String, Object>> response = 
@@ -119,7 +119,7 @@ class FetchJeepTest {
   static Stream<Arguments> parametersForInvalidInput() {
     // @formatter:off
     return Stream.of(
-        arguments("WRANGLER", "&#lkjd", "Trim contains non-alpha-numeric characters."), 
+        arguments("WRANGLER", "@#$*", "Trim contains non-alpha-numeric characters."), 
         arguments("WRANGLER", "C".repeat(Constants.TRIM_MAX_LENGTH + 1), "Trim length too long."),
         arguments("INVALID", "Sport", "Model is not enum value.")
         // @formatter:on
@@ -146,7 +146,7 @@ class FetchJeepTest {
      JeepModel model = JeepModel.WRANGLER;
      String trim = "Invalid";
      String uri =
-         String.format("%s?model=%s&trim=%s", getBaseUri(), model, trim);
+         String.format("%s?model=%s&trim=%s", getBaseUriForJeeps(), model, trim);
    
      doThrow(new RuntimeException("Ouch")).when(jeepSalesService)
        .fetchJeeps(model, trim);

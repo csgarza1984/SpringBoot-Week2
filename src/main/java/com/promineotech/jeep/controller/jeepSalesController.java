@@ -70,7 +70,7 @@ public interface jeepSalesController {
       @RequestParam(required = false) 
         JeepModel model,
       @Length(max = Constants.TRIM_MAX_LENGTH)
-      @Pattern(regexp = "[\\w\\s]") 
+      @Pattern(regexp = "[\\w\\s]*") 
       @RequestParam(required = false) 
         String trim);
   // @formatter:on 
