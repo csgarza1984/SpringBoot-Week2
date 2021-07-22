@@ -56,7 +56,7 @@ public class DefaultJeepOrderDao implements JeepOrderDao {
         .price(price)
         .build();
     //@formatter:on
-  }
+  } // saveOrder
 
   /**
    * 
@@ -68,7 +68,7 @@ public class DefaultJeepOrderDao implements JeepOrderDao {
       SqlParams params = generateInsertSql(option, orderPK);
       jdbcTemplate.update(params.sql, params.source);
     }
-  }
+  } // saveOptions
 
   /**
    * 
@@ -92,7 +92,7 @@ public class DefaultJeepOrderDao implements JeepOrderDao {
     params.source.addValue("order_fk", orderPK);
 
     return params;
-  }
+  } // generateInsertSql
 
   /**
    * 
